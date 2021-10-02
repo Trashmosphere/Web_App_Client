@@ -1,0 +1,5 @@
+@media only screen and (max-device-width:680px){
+    .cesiumContainer{
+        height:250px
+    }
+}
