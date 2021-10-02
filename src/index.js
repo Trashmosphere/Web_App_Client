@@ -8,7 +8,7 @@ app.get('/', function(req,res){
 });
 
 app.get('/getCZML', function(req,res){
-    res.sendFile(path.resolve(__dirname,"../data/big_orbit.czml"));
+    res.sendFile(path.resolve(__dirname,"../data/orbit.czml"));
 });
 
 app.listen(process.env.PORT || 3000);
