@@ -9,8 +9,14 @@ app.get('/', function(req,res){
 });
 
 app.get('/getCZML',  async function(req,res){
-    const result = await axios.get('http://34.79.72.147:5000/test')
-    res.send(result)
+    try{
+    const result = await axios.get('http://34.79.72.147:5000/getData')
+    res.send(result.data)
+    }catch(e)
+    {
+        res.send(e)
+        console.log(e)
+    }
 });
 
 app.listen(process.env.PORT || 3000);
