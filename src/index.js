@@ -8,7 +8,7 @@ app.get('/', function(req,res){
 });
 
 app.get('/getCZML', function(req,res){
-    res.sendFile(path.resolve(__dirname,"../data/newCzml.czml"));
+    res.sendFile(path.resolve(__dirname,"../data/newCZML.czml"));
 });
 
 app.get('/getCZML1', function(req,res){

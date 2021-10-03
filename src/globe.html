@@ -91,6 +91,7 @@
       terrainProvider: Cesium.createWorldTerrain()
     });
 
+
     viewer.dataSources.dataSourceAdded= (event)=>{
       console.log("data added");
     }
@@ -151,14 +152,29 @@
       }, false);
     }
 
+    const dataSourcer = new Cesium.CzmlDataSource();
+
+
+    viewer.selectedEntityChanged.addEventListener((selectedEntity)=>{
+      console.log(selectedEntity);
+      console.log(selectedEntity._path._show._value);
+      if (selectedEntity._path==undefined || selectedEntity._path._show._value==undefined||selectedEntity._path._show._value==false)
+        selectedEntity.path.show=true;
+      else
+        selectedEntity.path.show=false;
+      
+    });
 
     async function loadData()
     {
       const d = new Date();
     console.log(d.getTime());
-    viewer.dataSources.add( Cesium.CzmlDataSource.load("getCZML")
+    viewer.dataSources.add( dataSourcer.load("getCZML")
     ).then((result)=>{
-      console.log(new Date().getTime())
+      /*const x = new Cesium.EntityCollection(viewer.dataSources);
+      dataSourcer.entities._entities._array[0].path.show=false
+      console.log(dataSourcer.entities._entities._array[0]);*/
+
     });
     }
 
