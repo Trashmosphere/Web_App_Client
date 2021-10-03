@@ -8,8 +8,9 @@ app.get('/', function(req,res){
     res.sendFile('globe.html', {root:__dirname});
 });
 
-app.get('/getCZML',  function(req,res){
-    res.sendFile(path.resolve(__dirname,"../data/newCzml.czml"));
+app.get('/getCZML',  async function(req,res){
+    const result = await axios.get('http://34.79.72.147:5000/test')
+    res.send(result)
 });
 
 app.listen(process.env.PORT || 3000);
