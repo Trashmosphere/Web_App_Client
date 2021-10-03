@@ -53,6 +53,7 @@
   </div>
   <script>
     $(document).ready(function(){
+      loadData();
       $("#slider").hide();
       $("#location").hide();
     });
@@ -89,6 +90,10 @@
     const viewer = new Cesium.Viewer('cesiumContainer', {
       terrainProvider: Cesium.createWorldTerrain()
     });
+
+    viewer.dataSources.dataSourceAdded= (event)=>{
+      console.log("data added");
+    }
 
     let isPossible=false;
     let lastX=0, difX=0;
@@ -146,9 +151,19 @@
       }, false);
     }
 
-    viewer.dataSources.add(
-      Cesium.CzmlDataSource.load("getCZML")
-    );
+
+    async function loadData()
+    {
+      const d = new Date();
+    console.log(d.getTime());
+    viewer.dataSources.add( Cesium.CzmlDataSource.load("getCZML")
+    ).then((result)=>{
+      console.log(new Date().getTime())
+    });
+    }
+
+    
+    
     // Fly the camera to San Francisco at the given longitude, latitude, and height.
     viewer.camera.setView({
       destination: Cesium.Cartesian3.fromDegrees(23.5736303, 46.751339, 800),
