@@ -9,7 +9,8 @@ app.get('/', function(req,res){
 });
 
 app.get('/getCZML',  function(req,res){
-    res.sendFile(path.resolve(__dirname,"../data/newCZML.czml"));
+    //res.sendFile(path.resolve(__dirname,"../data/newCZML.czml"));
+    res.send("TEST");
 });
 
 app.listen(process.env.PORT || 3000);
